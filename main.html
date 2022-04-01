@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <style>
+        body {
+            display: flex;
+            justify-content: space-evenly;
+            flex-wrap: wrap;
+        }
+
+        .all {
+            box-shadow: 0px 0px 20px 0px rgb(167, 167, 167);
+            border: 2px solid white;
+            border-radius: 10px;
+            margin-bottom: 15px;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="pattern" class="all" style="width:100%;max-width:700px"></div>
+    <div id="generate" class="all" style="width:100%;max-width:700px"></div>
+    <div id="threeLines" class="all" style="width:100%;max-width:700px"></div>
+    <div id="bars" class="all" style="width:100%;max-width:700px"></div>
+    <div id="barsHorizontal" class="all" style="width:100%;max-width:700px"></div>
+    <div id="pie" class="all" style="width:100%;max-width:700px"></div>
+    <div id="donut" class="all" style="width:100%;max-width:700px"></div>
+    <div id="wave" class="all" style="width:100%;max-width:700px"></div>
+
+    <script>
+        var xArray = [50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150];
+        var yArray = [7, 8, 10, 11, 10, 11, 15, 14, 15];
+
+        var dataPattern = [{
+            x: xArray,
+            y: yArray,
+            mode: "lines"
+        }];
+        var layoutPattern = {
+            xaxis: { range: [40, 160], title: "X" },
+            yaxis: { range: [5, 16], title: "Y" },
+            title: "Pattern Graphic"
+        };
+        Plotly.newPlot("pattern", dataPattern, layoutPattern);
+
+        //New graphic//
+
+        var exp = "x + 17";
+        var xValues = [];
+        var yValues = [];
+        for (var x = 0; x <= 10; x += 1) {
+            yValues.push(eval(exp));
+            xValues.push(x);
+        }
+        var dataGenerate = [{
+            x: xValues,
+            y: yValues,
+            mode: "lines"
+        }];
+        var layoutGenerate = { title: "Generate y = " + exp };
+        Plotly.newPlot("generate", dataGenerate, layoutGenerate);
+
+        //New Graphic//
+
+        var exp1 = "x";
+        var exp2 = "1.5*x";
+        var exp3 = "1.5*x + 7";
+
+        var x1Values = [];
+        var x2Values = [];
+        var x3Values = [];
+        var y1Values = [];
+        var y2Values = [];
+        var y3Values = [];
+
+        for (var x = 0; x <= 10; x += 1) {
+            x1Values.push(x);
+            x2Values.push(x);
+            x3Values.push(x);
+            y1Values.push(eval(exp1));
+            y2Values.push(eval(exp2));
+            y3Values.push(eval(exp3));
+        }
+
+        var data = [
+            { x: x1Values, y: y1Values, mode: "lines" },
+            { x: x2Values, y: y2Values, mode: "lines" },
+            { x: x3Values, y: y3Values, mode: "lines" }
+        ];
+
+        var layout = { title: "Lines Graphic" };
+
+        Plotly.newPlot("threeLines", data, layout);
+
+        //New Graphic//
+
+        var xArray = ["Italy", "France", "Spain", "USA", "Argentina"];
+        var yArray = [55, 49, 44, 24, 15];
+
+        var data = [{
+            x: xArray,
+            y: yArray,
+            type: "bar"
+        }];
+        var layout = { title: "Bars Graphic" };
+
+        Plotly.newPlot("bars", data, layout);
+
+        //New Graphic//
+
+        var xArray = [12, 25, 36, 54, 32, 12, 31];
+        var yArray = ["Apple", "Milk", "Tea", "Sugar", "Pear", "Paper", "Cubes"];
+
+        var data = [{
+            x: xArray,
+            y: yArray,
+            type: "bar",
+            orientation: "h",
+            marker: { color: "rgba(255,0,0,0.6)" }
+        }];
+        var layout = { title: "Horizontal Bar Graphic" }
+
+        Plotly.newPlot("barsHorizontal", data, layout);
+
+        //New Graphic//
+
+        var xArray = [12, 25, 36, 54, 32, 12, 31];
+        var yArray = ["Apple", "Milk", "Tea", "Sugar", "Pear", "Paper", "Cubes"];
+
+        var data = [{
+            labels: yArray,
+            values: xArray,
+            type: "pie"
+        }];
+        var layout = { title: "Pie Graphic" }
+
+        Plotly.newPlot("pie", data, layout);
+
+        //New Graphic//
+
+        var xArray = [12, 25, 36, 54, 32, 12, 31];
+        var yArray = ["Apple", "Milk", "Tea", "Sugar", "Pear", "Paper", "Cubes"];
+
+        var data = [{
+            labels: yArray,
+            values: xArray,
+            hole: .4,
+            type: "pie"
+        }];
+        var layout = { title: "Pie Graphic" }
+
+        Plotly.newPlot("donut", data, layout);
+
+        //New Graphic//
+        var exp = "Math.sin(x)";
+        var xValuesWave = [];
+        var yValuesWave = [];
+        
+        for (var x = 0; x <= 10; x += 0.1) {
+            xValuesWave.push(x);
+            yValuesWave.push(eval(exp));
+        }
+
+        var data = [{ x: xValuesWave, y: yValuesWave, mode: "lines" }];
+        var layout = { title: "y = " + exp };
+        Plotly.newPlot("wave", data, layout);
+    </script>
+
+</body>
+
+</html>
